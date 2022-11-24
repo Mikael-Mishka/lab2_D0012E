@@ -1,23 +1,9 @@
 import random
 from time import perf_counter
-from matplotlib import pyplot as plt
-from math import ceil as ceil
+#from matplotlib import pyplot as plt
+#from math import ceil as ceil
 
-def setDistinctList(distinctElementList, n):
-
-    if n < 3:
-        return
-
-    sizeOfList = random.randint(3, 100000)
-    lowerbound = -sizeOfList
-
-    while len(distinctElementList) !=n :
-        randomNewInt = random.randint(lowerbound, sizeOfList)
-        if randomNewInt not in distinctElementList:
-            distinctElementList.append(randomNewInt)
-        else:
-            continue
-
+#Creates a list with distinct (non-repeating) integers
 def distinctLst(n):
     lst = []
     i=0
@@ -107,56 +93,49 @@ def max_subarray_rec(lst):
     #print(lst, (max_sum, tot_sum, left_max, right_max))
     return (max_sum, tot_sum, left_max, right_max)
 
-def verifyDistinctList(lst):
-    for i in range(0,len(lst)):
-        restOfList = lst[i+1:]
-        if lst[i] in restOfList:
-            return False
-    return True
+#def verifyDistinctList(lst):
+#    for i in range(0,len(lst)):
+#        restOfList = lst[i+1:]
+#        if lst[i] in restOfList:
+#            return False
+#    return True
 
-def graph(function,max):
-    i=3
-    times = []
-    index = []
-    while i<max:
-        print(i)
-        lst = CreateArrayA(i)
-        index.append(i)
-        start = perf_counter()
-        function(lst)
-        stop = perf_counter()
-        times.append(stop-start)
-        i=ceil(i*1.2)
-    plt.plot(index, times)
-    plt.ylabel('Runtime')
-    plt.xlabel('Input size')
-    plt.show()
+#def graph(function,max):
+#    i=3
+#    times = []
+#    index = []
+#    while i<max:
+#        print(i)
+#        lst = CreateArrayA(i)
+#        index.append(i)
+#        start = perf_counter()
+#        function(lst)
+#        stop = perf_counter()
+#        times.append(stop-start)
+#        i=ceil(i*1.2)
+#    plt.plot(index, times)
+#    plt.ylabel('Runtime')
+#    plt.xlabel('Input size')
+#    plt.show()
 
-def CreateArrayA(length):
-    lst=[]
-    while len(lst)< length:
-        randomInt = random.randint(-10000,10000)
-        if randomInt != 0:
-            lst.append(randomInt)
-    return lst
-
+#def CreateArrayA(length):
+#    lst=[]
+#    while len(lst)< length:
+#        randomInt = random.randint(-10000,10000)
+#        if randomInt != 0:
+#            lst.append(randomInt)
+#    return lst
 
 def main(alg: int):
 
     # List size
-    #n = 50000
     lst = [1,2,-6,7,9,3,-5,-1]
-    print(max_subarray(lst))
-
+    n=6
     # List for holding the distinct elements #argument - 'n' must be >=3
-    distinctElementList = distinctLst(4)
-
-
-    #print("list done")
-    #print(verifyDistinctList(distinctElementList))
+    # For Divide and Conquer, 'n' must be 3*2^(k-1) for any positive integer k
+    distinctElementList = distinctLst(n)
 
     if alg == 1:
-        print(distinctElementList)
         print(incrementalAlg(distinctElementList))
     elif alg == 2:
         print(distinctElementList)
@@ -170,6 +149,6 @@ def main(alg: int):
 
 
 if __name__ == '__main__':
-    algorithm = 2
+    algorithm = 3
 
     main(algorithm)
